@@ -1,0 +1,812 @@
+[
+  structure_item 
+    Pstr_module
+    "Spice" 
+      module_expr 
+        Pmod_structure
+        [
+          structure_item 
+            Pstr_type Nonrec
+            [
+              type_declaration "decodeError"  
+                ptype_params =
+                  []
+                ptype_cstrs =
+                  []
+                ptype_kind =
+                  Ptype_record
+                    [
+                      
+                        Immutable
+                        "path"                         core_type 
+                          Ptyp_constr "string" 
+                          []
+                      
+                        Immutable
+                        "message"                         core_type 
+                          Ptyp_constr "string" 
+                          []
+                      
+                        Immutable
+                        "value"                         core_type 
+                          Ptyp_constr "Js.Json.t" 
+                          []
+                    ]
+                ptype_private = Public
+                ptype_manifest =
+                  None
+            ]
+          structure_item 
+            Pstr_type Nonrec
+            [
+              type_declaration "result"  
+                ptype_params =
+                  [
+                    core_type 
+                      Ptyp_var a
+                  ]
+                ptype_cstrs =
+                  []
+                ptype_kind =
+                  Ptype_abstract
+                ptype_private = Public
+                ptype_manifest =
+                  Some
+                    core_type 
+                      Ptyp_constr "result" 
+                      [
+                        core_type 
+                          Ptyp_var a
+                        core_type 
+                          Ptyp_constr "decodeError" 
+                          []
+                      ]
+            ]
+          structure_item 
+            Pstr_type Nonrec
+            [
+              type_declaration "decoder"  
+                ptype_params =
+                  [
+                    core_type 
+                      Ptyp_var a
+                  ]
+                ptype_cstrs =
+                  []
+                ptype_kind =
+                  Ptype_abstract
+                ptype_private = Public
+                ptype_manifest =
+                  Some
+                    core_type 
+                      Ptyp_constr "function$" 
+                      [
+                        core_type 
+                          Ptyp_arrow
+                          Nolabel
+                          core_type 
+                            Ptyp_constr "Js.Json.t" 
+                            []
+                          core_type 
+                            Ptyp_constr "result" 
+                            [
+                              core_type 
+                                Ptyp_var a
+                            ]
+                        core_type 
+                          Ptyp_variant closed=Closed
+                          [
+                            Rtag "Has_arity1" true
+                              []
+                          ]
+                          None
+                      ]
+            ]
+          structure_item 
+            Pstr_type Nonrec
+            [
+              type_declaration "encoder"  
+                ptype_params =
+                  [
+                    core_type 
+                      Ptyp_var a
+                  ]
+                ptype_cstrs =
+                  []
+                ptype_kind =
+                  Ptype_abstract
+                ptype_private = Public
+                ptype_manifest =
+                  Some
+                    core_type 
+                      Ptyp_constr "function$" 
+                      [
+                        core_type 
+                          Ptyp_arrow
+                          Nolabel
+                          core_type 
+                            Ptyp_var a
+                          core_type 
+                            Ptyp_constr "Js.Json.t" 
+                            []
+                        core_type 
+                          Ptyp_variant closed=Closed
+                          [
+                            Rtag "Has_arity1" true
+                              []
+                          ]
+                          None
+                      ]
+            ]
+          structure_item 
+            Pstr_type Nonrec
+            [
+              type_declaration "codec"  
+                ptype_params =
+                  [
+                    core_type 
+                      Ptyp_var a
+                  ]
+                ptype_cstrs =
+                  []
+                ptype_kind =
+                  Ptype_abstract
+                ptype_private = Public
+                ptype_manifest =
+                  Some
+                    core_type 
+                      Ptyp_tuple
+                      [
+                        core_type 
+                          Ptyp_constr "encoder" 
+                          [
+                            core_type 
+                              Ptyp_var a
+                          ]
+                        core_type 
+                          Ptyp_constr "decoder" 
+                          [
+                            core_type 
+                              Ptyp_var a
+                          ]
+                      ]
+            ]
+          structure_item 
+            Pstr_value Nonrec
+            [
+              <def>
+                pattern 
+                  Ppat_var "error" 
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (3,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Optional "path"
+                      None
+                      pattern 
+                        attribute  "res.namedArgLoc"
+                          []
+                        Ppat_var "path" 
+                      expression 
+                        Pexp_fun
+                        Nolabel
+                        None
+                        pattern 
+                          Ppat_var "message" 
+                        expression 
+                          Pexp_fun
+                          Nolabel
+                          None
+                          pattern 
+                            Ppat_var "value" 
+                          expression 
+                            attribute  "res.braces"
+                              []
+                            Pexp_let Nonrec
+                            [
+                              <def>
+                                pattern 
+                                  Ppat_var "path" 
+                                expression 
+                                  Pexp_match
+                                  expression 
+                                    Pexp_ident "path" 
+                                  [
+                                    <case>
+                                      pattern 
+                                        Ppat_construct "None" 
+                                        None
+                                      expression 
+                                        Pexp_constant PConst_string ("",Some "*j")
+                                    <case>
+                                      pattern 
+                                        Ppat_construct "Some" 
+                                        Some
+                                          pattern 
+                                            Ppat_var "s" 
+                                      expression 
+                                        Pexp_ident "s" 
+                                  ]
+                            ]
+                            expression 
+                              Pexp_construct "Error" 
+                              Some
+                                expression 
+                                  Pexp_record
+                                  [
+                                    "path" 
+                                      expression 
+                                        Pexp_ident "path" 
+                                    "message" 
+                                      expression 
+                                        Pexp_ident "message" 
+                                    "value" 
+                                      expression 
+                                        Pexp_ident "value" 
+                                  ]
+                                  None
+            ]
+          structure_item 
+            Pstr_value Nonrec
+            [
+              <def>
+                pattern 
+                  Ppat_var "stringToJson" 
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (1,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Nolabel
+                      None
+                      pattern 
+                        Ppat_var "s" 
+                      expression 
+                        Pexp_constraint
+                        expression 
+                          Pexp_construct "Js.Json.String" 
+                          Some
+                            expression 
+                              Pexp_ident "s" 
+                        core_type 
+                          Ptyp_constr "Js.Json.t" 
+                          []
+            ]
+          structure_item 
+            Pstr_value Nonrec
+            [
+              <def>
+                pattern 
+                  Ppat_var "stringFromJson" 
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (1,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Nolabel
+                      None
+                      pattern 
+                        Ppat_var "j" 
+                      expression 
+                        Pexp_match
+                        expression 
+                          Pexp_constraint
+                          expression 
+                            Pexp_ident "j" 
+                          core_type 
+                            Ptyp_constr "Js.Json.t" 
+                            []
+                        [
+                          <case>
+                            pattern 
+                              Ppat_construct "Js.Json.String" 
+                              Some
+                                pattern 
+                                  Ppat_var "s" 
+                            expression 
+                              Pexp_construct "Ok" 
+                              Some
+                                expression 
+                                  Pexp_ident "s" 
+                          <case>
+                            pattern 
+                              Ppat_any
+                            expression 
+                              Pexp_construct "Error" 
+                              Some
+                                expression 
+                                  Pexp_record
+                                  [
+                                    "path" 
+                                      expression 
+                                        Pexp_constant PConst_string ("",Some "*j")
+                                    "message" 
+                                      expression 
+                                        Pexp_constant PConst_string ("Not a string",Some "*j")
+                                    "value" 
+                                      expression 
+                                        Pexp_ident "j" 
+                                  ]
+                                  None
+                        ]
+            ]
+          structure_item 
+            Pstr_value Nonrec
+            [
+              <def>
+                pattern 
+                  Ppat_var "intToJson" 
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (1,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Nolabel
+                      None
+                      pattern 
+                        Ppat_var "i" 
+                      expression 
+                        Pexp_constraint
+                        expression 
+                          Pexp_construct "Js.Json.Number" 
+                          Some
+                            expression 
+                              Pexp_apply
+                              expression 
+                                Pexp_ident "Float.fromInt" 
+                              [
+                                <arg>
+                                Nolabel
+                                  expression 
+                                    Pexp_ident "i" 
+                              ]
+                        core_type 
+                          Ptyp_constr "Js.Json.t" 
+                          []
+            ]
+          structure_item 
+            Pstr_value Nonrec
+            [
+              <def>
+                pattern 
+                  Ppat_var "optionToJson" 
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (2,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Nolabel
+                      None
+                      pattern 
+                        Ppat_var "encoder" 
+                      expression 
+                        Pexp_fun
+                        Nolabel
+                        None
+                        pattern 
+                          Ppat_var "opt" 
+                        expression 
+                          Pexp_constraint
+                          expression 
+                            Pexp_match
+                            expression 
+                              Pexp_ident "opt" 
+                            [
+                              <case>
+                                pattern 
+                                  Ppat_construct "Some" 
+                                  Some
+                                    pattern 
+                                      Ppat_var "x" 
+                                expression 
+                                  Pexp_construct "Some" 
+                                  Some
+                                    expression 
+                                      Pexp_apply
+                                      expression 
+                                        Pexp_ident "encoder" 
+                                      [
+                                        <arg>
+                                        Nolabel
+                                          expression 
+                                            Pexp_ident "x" 
+                                      ]
+                              <case>
+                                pattern 
+                                  Ppat_construct "None" 
+                                  None
+                                expression 
+                                  Pexp_construct "None" 
+                                  None
+                            ]
+                          core_type 
+                            Ptyp_constr "option" 
+                            [
+                              core_type 
+                                Ptyp_constr "Js.Json.t" 
+                                []
+                            ]
+            ]
+          structure_item 
+            Pstr_value Nonrec
+            [
+              <def>
+                pattern 
+                  Ppat_var "filterOptional" 
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (1,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Nolabel
+                      None
+                      pattern 
+                        Ppat_var "arr" 
+                      expression 
+                        Pexp_apply
+                        expression 
+                          Pexp_ident "Belt.Array.keepMap" 
+                        [
+                          <arg>
+                          Nolabel
+                            expression 
+                              Pexp_ident "arr" 
+                          <arg>
+                          Nolabel
+                            expression 
+                              attribute  "res.arity"
+                                [
+                                  structure_item 
+                                    Pstr_eval
+                                    expression 
+                                      Pexp_constant PConst_int (1,None)
+                                ]
+                              Pexp_construct "Function$" 
+                              Some
+                                expression 
+                                  Pexp_fun
+                                  Nolabel
+                                  None
+                                  pattern 
+                                    Ppat_tuple
+                                    [
+                                      pattern 
+                                        Ppat_var "k" 
+                                      pattern 
+                                        Ppat_var "v" 
+                                    ]
+                                  expression 
+                                    Pexp_match
+                                    expression 
+                                      Pexp_ident "v" 
+                                    [
+                                      <case>
+                                        pattern 
+                                          Ppat_construct "Some" 
+                                          Some
+                                            pattern 
+                                              Ppat_var "v" 
+                                        expression 
+                                          Pexp_construct "Some" 
+                                          Some
+                                            expression 
+                                              Pexp_tuple
+                                              [
+                                                expression 
+                                                  Pexp_ident "k" 
+                                                expression 
+                                                  Pexp_ident "v" 
+                                              ]
+                                      <case>
+                                        pattern 
+                                          Ppat_construct "None" 
+                                          None
+                                        expression 
+                                          Pexp_construct "None" 
+                                          None
+                                    ]
+                        ]
+            ]
+        ]
+  structure_item 
+    Pstr_type Nonrec
+    [
+      type_declaration "tOp"  
+        ptype_params =
+          []
+        ptype_cstrs =
+          []
+        ptype_kind =
+          Ptype_record
+            [
+              
+                Immutable
+                "label"                 core_type 
+                  Ptyp_constr "option" 
+                  [
+                    core_type 
+                      Ptyp_constr "string" 
+                      []
+                  ]
+              
+                attribute  "res.optional"
+                  []
+                Immutable
+                "value"                 core_type 
+                  Ptyp_constr "int" 
+                  []
+            ]
+        ptype_private = Public
+        ptype_manifest =
+          None
+    ]
+  structure_item 
+    Pstr_value Nonrec
+    [
+      <def>
+        pattern 
+          Ppat_var "tOp_encode" 
+        expression 
+          attribute  "res.arity"
+            [
+              structure_item 
+                Pstr_eval
+                expression 
+                  Pexp_constant PConst_int (1,None)
+            ]
+          Pexp_construct "Function$" 
+          Some
+            expression 
+              Pexp_fun
+              Nolabel
+              None
+              pattern 
+                Ppat_var "v" 
+              expression 
+                Pexp_apply
+                expression 
+                  attribute  "res.arity"
+                    [
+                      structure_item 
+                        Pstr_eval
+                        expression 
+                          Pexp_constant PConst_int (1,None)
+                    ]
+                  Pexp_construct "Function$" 
+                  Some
+                    expression 
+                      Pexp_fun
+                      Nolabel
+                      None
+                      pattern 
+                        Ppat_var "v" 
+                      expression 
+                        Pexp_constraint
+                        expression 
+                          Pexp_construct "Js.Json.Object" 
+                          Some
+                            expression 
+                              Pexp_apply
+                              expression 
+                                Pexp_ident "Js.Dict.fromArray" 
+                              [
+                                <arg>
+                                Nolabel
+                                  expression 
+                                    Pexp_apply
+                                    expression 
+                                      Pexp_ident "Spice.filterOptional" 
+                                    [
+                                      <arg>
+                                      Nolabel
+                                        expression 
+                                          Pexp_array
+                                          [
+                                            expression 
+                                              Pexp_tuple
+                                              [
+                                                expression 
+                                                  Pexp_constant PConst_string ("label",Some "*j")
+                                                expression 
+                                                  Pexp_apply
+                                                  expression 
+                                                    attribute  "res.partial"
+                                                      []
+                                                    Pexp_apply
+                                                    expression 
+                                                      Pexp_ident "Spice.optionToJson" 
+                                                    [
+                                                      <arg>
+                                                      Nolabel
+                                                        expression 
+                                                          Pexp_ident "Spice.stringToJson" 
+                                                    ]
+                                                  [
+                                                    <arg>
+                                                    Nolabel
+                                                      expression 
+                                                        Pexp_field
+                                                        expression 
+                                                          Pexp_ident "v" 
+                                                        "label" 
+                                                  ]
+                                              ]
+                                            expression 
+                                              Pexp_tuple
+                                              [
+                                                expression 
+                                                  Pexp_constant PConst_string ("value",Some "*j")
+                                                expression 
+                                                  Pexp_apply
+                                                  expression 
+                                                    attribute  "res.partial"
+                                                      []
+                                                    Pexp_apply
+                                                    expression 
+                                                      Pexp_ident "Spice.optionToJson" 
+                                                    [
+                                                      <arg>
+                                                      Nolabel
+                                                        expression 
+                                                          Pexp_ident "Spice.intToJson" 
+                                                    ]
+                                                  [
+                                                    <arg>
+                                                    Nolabel
+                                                      expression 
+                                                        Pexp_field
+                                                        expression 
+                                                          Pexp_ident "v" 
+                                                        "value" 
+                                                  ]
+                                              ]
+                                          ]
+                                    ]
+                              ]
+                        core_type 
+                          Ptyp_constr "Js.Json.t" 
+                          []
+                [
+                  <arg>
+                  Nolabel
+                    expression 
+                      Pexp_ident "v" 
+                ]
+    ]
+]
+
+// Generated by ReScript, PLEASE EDIT WITH CARE
+'use strict';
+
+let Js_dict = require("rescript/lib/js/Js_dict.js");
+let Belt_Array = require("rescript/lib/js/Belt_Array.js");
+let Primitive_option = require("rescript/lib/js/Primitive_option.js");
+
+function error(path, message, value) {
+  let path$1 = path !== undefined ? path : "";
+  return {
+    TAG: "Error",
+    _0: {
+      path: path$1,
+      message: message,
+      value: value
+    }
+  };
+}
+
+function stringToJson(s) {
+  return s;
+}
+
+function stringFromJson(j) {
+  if (!Array.isArray(j) && (j === null || typeof j !== "object") && typeof j !== "number" && typeof j !== "string" && typeof j !== "boolean" || typeof j !== "string") {
+    return {
+      TAG: "Error",
+      _0: {
+        path: "",
+        message: "Not a string",
+        value: j
+      }
+    };
+  } else {
+    return {
+      TAG: "Ok",
+      _0: j
+    };
+  }
+}
+
+function intToJson(i) {
+  return i;
+}
+
+function optionToJson(encoder, opt) {
+  if (opt !== undefined) {
+    return encoder(Primitive_option.valFromOption(opt));
+  }
+  
+}
+
+function filterOptional(arr) {
+  return Belt_Array.keepMap(arr, param => {
+    let v = param[1];
+    if (v !== undefined) {
+      return [
+        param[0],
+        Primitive_option.valFromOption(v)
+      ];
+    }
+    
+  });
+}
+
+let Spice = {
+  error: error,
+  stringToJson: stringToJson,
+  stringFromJson: stringFromJson,
+  intToJson: intToJson,
+  optionToJson: optionToJson,
+  filterOptional: filterOptional
+};
+
+function tOp_encode(v) {
+  let extra = v.label;
+  let extra$1 = v.value;
+  return Js_dict.fromArray(filterOptional([
+    [
+      "label",
+      optionToJson(stringToJson, extra)
+    ],
+    [
+      "value",
+      optionToJson(intToJson, extra$1)
+    ]
+  ]));
+}
+
+exports.Spice = Spice;
+exports.tOp_encode = tOp_encode;
+/* No side effect */

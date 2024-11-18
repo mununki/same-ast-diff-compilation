@@ -1,0 +1,29 @@
+{
+  "name": "spice-ppx",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "esmodule",
+      "in-source": true
+    }
+  ],
+  "suffix": ".mjs",
+  "bs-dependencies": [],
+  "bs-dev-dependencies": [
+    "@dusty-phillips/rescript-zora"
+  ],
+  "ppx-flags": [
+    "./ppx"
+  ],
+  "warnings": {
+    "error": true,
+    "number": "-48"
+  },
+  "generators": [],
+  "bsc-flags": []
+}
